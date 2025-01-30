@@ -1,5 +1,8 @@
+import controller.GestorFicheros;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Entrada {
     //en el main van las instancias y llamadas a metodos
@@ -24,8 +27,12 @@ public class Entrada {
         System.out.println(ficheroSinPuntero.exists()); //nos dice si existe y si es logico, si no, es que no esta en fisico
         System.out.println(ficheroSinPuntero.isDirectory()); // le pregunto si es directorio
         System.out.println(ficheroSinPuntero.isFile()); // le pregunto si es fichero
-        System.out.println(ficheroSinPuntero.listFiles()); //nos indica lo que hay dentro, nos devuelve un string array con los ficheros que estan dentro del directorio
-        System.out.println(ficheroSinPuntero.list()); //nos indica lo que hay dentro, nos devuelve un string array, con todas las rutas de los ficheros que estan dentro del directorio
+        System.out.println(Arrays.toString(ficheroSinPuntero.listFiles())); //nos indica lo que hay dentro, nos devuelve un string array con los ficheros que estan dentro del directorio
+        System.out.println(Arrays.toString(ficheroSinPuntero.list())); //nos indica lo que hay dentro, nos devuelve un string array, con todas las rutas de los ficheros que estan dentro del directorio
+
+        GestorFicheros gestorFicheros = new GestorFicheros();
+        gestorFicheros.lecturaTextoPlano("src/resources/ficheros/lectura.txt");
+
 
         //o me interesa crear el fichero en caso de que sea solo logico, para ello primero preguntamos si existe o no para que si no, lo cree:
         //te lo crea si no esta creado, si es que existe, no entra en el bucle

@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+//FLUJO DE DATOS DE TEXTO PLANO// HILOS 
 public class Entrada {
     //en el main van las instancias y llamadas a metodos
     public static void main(String[] args) throws IOException {

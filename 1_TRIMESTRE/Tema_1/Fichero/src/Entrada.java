@@ -1,5 +1,9 @@
 import controller.GestorFicheros;
+import controller.GestionFicherosEscritura;
+import controller.GestorFicherosConjuntos;
+import controller.GestorFicherosLectura;
 
+import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -45,7 +49,21 @@ public class Entrada {
             //si la ruta no existe, voy a intentar crear algo donde no esta, se crearia automaticamente para poderlo meter.
         }
 
-
+        GestorFicherosConjuntos gestorFicherosConjuntos = new GestorFicherosConjuntos();
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
+        do {
+            System.out.println("Introduce que quieres hacer");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    gestorFicherosConjuntos.cifrado("src/resources/ficheros/cifradoCodigo.txt");
+                    break;
+                case 2:
+                    gestorFicherosConjuntos.descifrarMensajeCodigo("src/resources/ficheros/cifradoCodigo.txt");
+                    break;
+            }
+        } while (opcion!=0);
 
 
     }

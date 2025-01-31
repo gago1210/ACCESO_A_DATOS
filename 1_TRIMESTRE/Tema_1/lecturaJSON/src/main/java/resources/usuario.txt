@@ -1,0 +1,13 @@
+/*si empieza por {} --> JSON Object */
+/*si empieza por [] --> JSON Array */
+
+/*tenemos un txt que queremos pasar a json, porque sino no podemos hacer la lecturadel mismo, necesito la libreria
+que me permite hacer la conversion*/
+
+{
+    "nombre": "Borja",
+    "apellido": "Martin",
+    "edad": 40,
+    "asignaturas": ["ad","pmdm","di"]
+
+}

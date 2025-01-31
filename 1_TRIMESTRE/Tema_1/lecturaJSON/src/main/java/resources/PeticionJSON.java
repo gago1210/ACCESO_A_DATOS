@@ -55,7 +55,7 @@ public class PeticionJSON {
     public void metodoMenu() {
 
         int opcion = 0;
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in); //metodo para entrar
         // BufferReader br -> lectura por teclar
 
         do {
@@ -67,18 +67,25 @@ public class PeticionJSON {
             System.out.println("Que opcion quieres realizar");
             opcion = sc.nextInt();
 
-            switch (opcion) {
+            switch (opcion) { //que nos se nos olvide poner el brake tras cada opcion para que pare el bucle !!!!!!!!
+                                //si yo declaro algo dentro del switch, no se puede acceder directamente porque el case no me deja, solo me deja si
+                                    //entro en su ambito que es dentro del bucle del switch, sino, no entra porque no estas entrando dentro del bucle
+
                 case 1:
                     System.out.println("Leer JSON");
                     try {
                         URL url = new URL("https://dummyjson.com/products");
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection(); //abro la peticion
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream())); // la leo
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream())); // aqui el bufferedreader va a marcar lo que tu metes dentro de el, vas a hacer una lectura a traves de lo que diga ahi, es como un scanner
                         JSONObject jsonObject = new JSONObject(bufferedReader.readLine()); //la abro
                         JSONArray jsonArray = jsonObject.getJSONArray("products");
 
-                        // primitivas->a, 7, false
-                        // complejas -> (9,99 + metodos)
+                        //si hablamos de variables, estan las primitivas y las complejas:
+                        // primitivas-> son las que guardan en memoria un valor, es solo un dato, no puedo hacer nada respecto/con a ellas.
+                                        // a, 7, false --> minusculas
+                        // complejas -> son las que permiten dar funcionalidad, permiten usarlas, no las estoy tratando como variable primitiva,
+                                        // (9,99 + metodos) --> mayusculas
+                        //es importante poner la mayusculas porque es el indicativo del tipo de dato y se que es complejo porque apunta a un tipo de dato para asi poder usarlo
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject product = jsonArray.getJSONObject(i);
@@ -118,6 +125,10 @@ public class PeticionJSON {
         } while (opcion != 5);
     }
 
+
+    // los pasos para exportar datos son:
+    //File --> FileWriter --> PrintWriter
+    // Leer JSON -> iterar por producto -> escribe una linea
     private void exportarDatos() {
         // File -> FileWriter -> PrintWriter
         File file = new File("src/main/java/resources/productos.txt");
@@ -126,13 +137,16 @@ public class PeticionJSON {
             printWriter = new PrintWriter(new FileWriter(file, true));
             // Leer JSON -> iterar por producto -> escribe una linea
             URL url = new URL("https://dummyjson.com/products");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection(); //si falla esta linea, va a captar cualquiera de las dos excepciones catch a continuacion y despues ejecutarse el finally.
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             JSONObject jsonObject = new JSONObject(bufferedReader.readLine());
             JSONArray jsonArray = jsonObject.getJSONArray("products");
+
+            //VOY A PONER PRODUCTO 1, 2, 3 , ETC
             // [p1,p2,p3,p4,p5] ->5
             // binding
-            // 0,1,2,3,4
+            // 0,1,2,3,4 POSICION DE CADA PRODUCTO EN EL ARRAY, PRODUCTO 1, POSICION 0, ETC
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 //JSONObject object = jsonArray.getJSONObject(i);
                 Producto producto = new Gson().fromJson(jsonArray.getJSONObject(i).toString(),Producto.class);

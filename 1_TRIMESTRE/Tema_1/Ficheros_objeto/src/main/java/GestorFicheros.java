@@ -102,12 +102,14 @@ public class GestorFicheros {
         }
     }
 
+    //voy a hacer una lectura de los objetos de la interfaz, estan serializados
     public void lecturaObjeto(String path) {
         File file = new File(path);
         ObjectInputStream objectInputStream = null;
 
         try {
-            objectInputStream = new ObjectInputStream(new FileInputStream(file));
+            objectInputStream = new ObjectInputStream(new FileInputStream(file)); //esto es el fichero en modo entrada
+            //empiezo a hacer las lescturas de los obejtos serializados, en el orden en el que yo los haya creado
             Producto producto = (Producto) objectInputStream.readObject(); // null 12345L
             // Producto = 2345L
             producto.mostrarDatos();

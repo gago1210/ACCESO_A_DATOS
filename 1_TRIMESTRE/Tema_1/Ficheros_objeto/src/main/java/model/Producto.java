@@ -26,7 +26,7 @@ public class Producto implements Serializable {
      poderlo tratar como la entidad en si.
      En resumen serializar es coger un objeto, hacerlo cachos y despues volver a unirlos para poder acceder a ellos*/
 
-    private static final long serialVersionUID =  23456L;
+    private static final long serialVersionUID =  23456L; //le indico el numero identificador, el que a mi me de la gana, voy a gestorficheros y los vuelvo a escribir con el identificador
     private int id;
     private String title;
     private double price;

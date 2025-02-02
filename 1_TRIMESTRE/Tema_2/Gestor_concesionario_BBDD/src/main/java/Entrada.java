@@ -1,7 +1,8 @@
-import database.DBConnection;
+import controller.Concesionario;
 
+import database.DBConnection;
 import java.sql.Connection;
-import java.sql.Connection;
+import model.Empleado;
 
 public class Entrada {
     //voy a pedir la conexion dos veces//
@@ -31,6 +32,10 @@ public class Entrada {
         DBConnection dbConnection3 = new DBConnection();
         Connection connection3 = dbConnection.getConnection();
 
-
+        Concesionario concesionario = new Concesionario();
+        concesionario.insertarTrabajador(new Empleado("Juan1","Gomez","juan@gmail.com",234, Tipo.BECARIO));
+        concesionario.insertarTrabajador(new Empleado("Juan2","Gomez","juan@gmail.com",234, Tipo.INDEFINIDO));
+        concesionario.insertarTrabajador(new Empleado("Juan3","Gomez","juan@gmail.com",234, Tipo.EXTERNO));
+        System.out.println("Filas afectadas "+concesionario.borrarUsuario(2));
     }
 }

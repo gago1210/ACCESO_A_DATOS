@@ -33,6 +33,12 @@ public class Entrada {
         Connection connection3 = dbConnection.getConnection();
 
         Concesionario concesionario = new Concesionario();
+        //se basa en esta construccion: concesionario.insertarTrabajador(new Empleado("Borja", "Martin", "correo@correo",12345678));
+
+        //si quiero meter 3 tipos distintos:
+            //TIPO 1, EXT
+            //TIPO 2, IND
+            //TIPO 3, BEC
         concesionario.insertarTrabajador(new Empleado("Juan1","Gomez","juan@gmail.com",234, Tipo.BECARIO));
         concesionario.insertarTrabajador(new Empleado("Juan2","Gomez","juan@gmail.com",234, Tipo.INDEFINIDO));
         concesionario.insertarTrabajador(new Empleado("Juan3","Gomez","juan@gmail.com",234, Tipo.EXTERNO));

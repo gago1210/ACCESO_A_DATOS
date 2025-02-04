@@ -16,6 +16,7 @@ configurado.
 public interface SchemaDB {
     String DB_NAME = "concesionario"; //esto es para enlazar en el DBConnection y evitar errores con el nombre de la bbdd
     String TAB_EMP = "empleados"; //indicamos el nombre de la tabla empleados
+    String TAB_KIN = "tipos";
 
     //damos nombre a cada una de las columnas que conforman la tabla de mi bbdd
     String COL_ID = "id"; //se llama identificador porque muchas tablas van a tener esta columna y lo reutilizamos
@@ -23,4 +24,6 @@ public interface SchemaDB {
     String COL_EMP_SURNAME = "apellido";
     String COL_EMP_MAIL = "correo";
     String COL_EMP_PHO = "telefono";
+    String COL_KIN_PHO = "descripcion";
+    String COL_KIN_SIG = "siglas";
 }

@@ -46,7 +46,7 @@ public class Concesionario {
         // ya puedo acceder a la base de datos
         try {
             Statement statement = connection.createStatement();
-            String Psquery = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)",
+            String Psquery = String.format("INSERT INTO %s (%s,%s,%s,%s,%s) VALUES (?,?,?,?,?)", //s es el nombre de la columna
                     SchemaDB.TAB_EMP,
                     SchemaDB.COL_EMP_NAME, SchemaDB.COL_EMP_SURNAME, SchemaDB.COL_EMP_MAIL, SchemaDB.COL_EMP_PHO, SchemaDB.COL_EMP_KIN);
             //primero creas la query, la metes en la creacion del objeto por eso no hay que compilarla cada vez que modifico.

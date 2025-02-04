@@ -43,5 +43,7 @@ public class Entrada {
         concesionario.insertarTrabajador(new Empleado("Juan2","Gomez","juan@gmail.com",234, Tipo.INDEFINIDO));
         concesionario.insertarTrabajador(new Empleado("Juan3","Gomez","juan@gmail.com",234, Tipo.EXTERNO));
         System.out.println("Filas afectadas "+concesionario.borrarUsuario(2));
+
+
     }
 }

@@ -93,6 +93,32 @@ public class Concesionario {
         return 0;
     }
 
+    // lectura de los usuarios
+    public void leerUsuarios(int tipo) {
+        // no se puede mapear de forma directa -> Vector[[nombre, apellido, correo],[nombre, apellido, correo]]
+        // Connection -> Statement / PrepareStatement -> executeQuery -> ResultSet
+        Connection connection = new DBConnecion().getConnection();
+        // SELECT * FROM empleado WHERE ID=7;
+        String query = String.format("SELECT * FROM %s WHERE %s=?", SchemaDB.TAB_EMP, SchemaDB.COL_EMP_KIN);
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, tipo);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            //  v
+            //  R,R,R,R,R
+            while (resultSet.next()) {
+                String nombre = resultSet.getString(SchemaDB.COL_EMP_NAME);
+                String correo = resultSet.getString(SchemaDB.COL_EMP_MAIL);
+                int tipo1 = resultSet.getInt(SchemaDB.COL_EMP_KIN);
+                System.out.printf("Nombre del empleado %s\n\tCorreo del empleado %s\n\tTipo del empleado %s\n", nombre, correo, tipo1);
+            }
+        } catch (SQLException e) {
+            System.out.println("error en la query");
+        }
+    }
+
+
 
 }
 

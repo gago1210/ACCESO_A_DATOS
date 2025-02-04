@@ -41,3 +41,4 @@ public enum Tipos {
         this.descripcion = descripcion;
     }
 }
+//ESTO NO ES NECESARIO PORQUE YA LO TENEMOS IMPLEMENTADO TODO EN LA CLASE TIPO, PODRIAMOS BORRARLO PORQUE NO ES RELEVANTE

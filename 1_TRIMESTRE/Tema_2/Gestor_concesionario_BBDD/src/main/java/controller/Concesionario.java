@@ -38,6 +38,28 @@ public class Concesionario {
 
     //seguiremos el siguiente formato
     //insertar trabajador dentro de mi bbdd, para ello tengo que sacar los datos de model-empleado
+
+    //hacemos el insertarTrabajador a traves del DAO:
+    private EmpleadoDAO empleadoDAO;
+    private CochesDAO cochesDAO;
+    private VentaDAO ventaDAO;
+
+
+    //lo inicializo dentro del constructor
+    public Concesionario() {
+        empleadoDAO = new EmpleadoDAO();
+        cochesDAO = new CochesDAO();
+        ventaDAO = new VentaDAO();
+    }
+
+    public void insertarTrabajadorDAO(Empleado empleado) {
+        // la logica del negocio:
+        try {
+            empleadoDAO.insertarEmpleado(empleado);
+        } catch (SQLException e) {
+            System.out.println("Error en la insercion del empleado");
+        }
+    }
     public void insertarTrabajador(Empleado empleado) {
         //voy a hacer solo el PrepareStatement
         // SchemaDB.nombre

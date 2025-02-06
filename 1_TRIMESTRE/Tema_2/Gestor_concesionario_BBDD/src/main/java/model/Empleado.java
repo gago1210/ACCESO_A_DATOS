@@ -25,5 +25,13 @@ public class Empleado {
         this.telefono = telefono;
         this.tipo = tipo;
     }
-
+    //con esto ya tendria el elemento completo con el metodo de empleadoDAO
+    public Empleado(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    public void mostrarDatos() {
+        System.out.println("nombre = " + nombre);
+        System.out.println("apellido = " + apellido);
+    }
 }

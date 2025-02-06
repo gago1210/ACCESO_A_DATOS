@@ -8,10 +8,9 @@ import model.Coche;
 
 import dao.CochesDAO;
 import dao.EmpleadoDAO;
-import dao.VentaDAO;
+import dao.VentasDAO;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Concesionario {
@@ -49,14 +48,14 @@ public class Concesionario {
     //hacemos el insertarTrabajador a traves del DAO:
     private EmpleadoDAO empleadoDAO;
     private CochesDAO cochesDAO; //creo el objeto cochesDAO
-    private VentaDAO ventaDAO;
+    private VentasDAO ventasDAO;
 
 
     //lo inicializo dentro del constructor
     public Concesionario() {
         empleadoDAO = new EmpleadoDAO();
         cochesDAO = new CochesDAO(); //inicializo el objeto cochesDAO
-        ventaDAO = new VentaDAO();
+        ventasDAO = new VentasDAO();
     }
 
     public void insertarTrabajadorDAO(Empleado empleado) {
@@ -128,7 +127,7 @@ public class Concesionario {
     public void leerUsuarios(int tipo) {
         // no se puede mapear de forma directa -> Vector[[nombre, apellido, correo],[nombre, apellido, correo]]
         // Connection -> Statement / PrepareStatement -> executeQuery -> ResultSet
-        Connection connection = new DBConnecion().getConnection();
+        Connection connection = new DBConnection().getConnection();
         // SELECT * FROM empleado WHERE ID=7;
         String query = String.format("SELECT * FROM %s WHERE %s=?", SchemaDB.TAB_EMP, SchemaDB.COL_EMP_KIN);
         PreparedStatement preparedStatement;
@@ -191,11 +190,39 @@ public class Concesionario {
         } catch (SQLException e) {
             System.out.println("No se puede realizar la consulta, quiere hacer otra cosa");
         }
-
     }
 
-
-
+    // tener la funcionalidad de vender un coche -> matricula
+    // y el coche lo vende un vendedor (tengo que decir quien lo vender)
+    // tener la funcionalidad de cual es el vendedor que mas coches ha vendido
+    public void realizarVenta() {
+        System.out.println("Dime el coche que vas a vender");
+        // pedido por scanner
+        int idCoche = 0;
+        System.out.println("Dime el vendedor que hace la venta");
+        int idEmpleado = 0;
+        try {
+            // el coche que estar vendiendo esta disponible?
+            // si no esta disponible haz XXXXX
+            // buscar un coche con las mismas caracteristicas de cv y precio
+            // si esta disponible, procede a registrar la venta
+            // cochesDAO.realizarVenta(1);
+            // empleadoDAO.realizarVenta(1);
+            ventasDAO.realizarVenta(idEmpleado, idCoche);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void mostrarEmpleadosMes(int numero) {
+        System.out.println("Dime cuantos quieres sacar");
+        int numeroEmpleados = 0; //aqui indicamos el numero de empleados que quiero sacar
+        try {
+            empleadoDAO.obtenerEmpleadoMes(3);
+        } catch (SQLException e) {
+            System.out.println("Error a la hora de obtenerlos");
+            System.out.println("Quieres hacer XXX");
+        }
+    }
 
 }
 

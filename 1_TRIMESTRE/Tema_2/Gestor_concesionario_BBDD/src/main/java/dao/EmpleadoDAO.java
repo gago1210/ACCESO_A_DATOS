@@ -54,7 +54,7 @@ public class EmpleadoDAO {
             String correo = resultSet.getString(SchemaDB.COL_EMP_MAIL);
             int telefono = resultSet.getInt(SchemaDB.COL_EMP_PHO);
             int tipo = resultSet.getInt(SchemaDB.COL_EMP_KIN);
-            return getEmpleado(nombre, apellido, correo, telefpno, tipo);
+            return getEmpleado(nombre, apellido, correo, telefono, tipo);
         }
 
         return null;
@@ -74,6 +74,32 @@ public class EmpleadoDAO {
                 break;
         }
         return new Empleado(nombre, apellido, correo, telefono, tipo1);
+    }
+
+    //la query que yo quiero ejecutar es:
+    public void realizarVenta(int id) throws SQLException {
+        /*cuando yo hago una venta quiero que a ese empelado se le sume una venta, de ahi el +1*/
+        String query = "UPDATE %s SET %s = %s+1 WHERE %s = ?"; /*lo que quiero modificar es el atributo ventas, incrementandole uno al
+        apartado de ventas con el usuario que la realice, le meto los parametros a la query de los datos que yo quiera obtener*/
+        preparedStatement = connection.prepareStatement(String.format(query,SchemaDB.TAB_EMP, SchemaDB.COL_EMP_SALE,SchemaDB.COL_EMP_SALE,
+                SchemaDB.COL_ID));
+        preparedStatement.setInt(1,id); //preparamos la query y le indicamos que en el primer hueco de la query que me de, sea el id
+        preparedStatement.execute(); //que se ejecute como sea
+    }
+
+    public void obtenerEmpleadoMes(int numero) throws SQLException {
+        String query = "SELECT * FROM %s ORDER BY %s DESC LIMIT ?"; /*order by es para que me de lo que necesito, sin preguntar y
+        desc limit es para quedarme con el primero con mayor puntuacion*/
+        preparedStatement = connection.prepareStatement(String.format(query,SchemaDB.COL_EMP_SALE));
+        preparedStatement.setInt(1, numero);
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()){
+            String nombre = resultSet.getString(SchemaDB.COL_EMP_NAME);
+            String apellido = resultSet.getString(SchemaDB.COL_EMP_SURNAME);
+            Empleado empleado = new Empleado(nombre,apellido);
+            empleado.mostrarDatos();
+        }
     }
 
 

@@ -61,6 +61,8 @@ public class CochesDAO {
         //este metodo de repetir las cosas es para, si repito una misma accion varias veces, sea mas sencillo
     }
 
+    /*este seria el metodo para realizar la venta:(esquema), esto dependerá de como quiero estructurar mi base de datos, si quiero que se
+    guarden todos los coches que se vendan para poder consultarlo o no */
     public void realizarVenta(int id){
         // DELETE -> WHERE id= id
         // UPDATE -> estado = false WHERE id= id

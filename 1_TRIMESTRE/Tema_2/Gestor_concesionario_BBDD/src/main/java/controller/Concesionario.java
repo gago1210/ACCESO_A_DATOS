@@ -2,9 +2,17 @@ package controller;
 
 import database.SchemaDB;
 import database.DBConnection;
+
 import model.Empleado;
+import model.Coche;
+
+import dao.CochesDAO;
+import dao.EmpleadoDAO;
+import dao.VentaDAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Concesionario {
     /* aqui vamos a hacer nuestras querys correspondientes basandonos en el CRUD  CREATE, READ, UPDATE, DELETE tipicos de la bbdd, pero los podemos juntar en dos grandes partes.
@@ -33,22 +41,21 @@ public class Concesionario {
    Las posiciones van de 1 en uno empezando en 1, no es como en un array que se inicializa en 0.
 
    El formato de creacion de quuerys es ALTAMENTE RECOMENDABLE seguir una interfaz, a creamos dentro de database para que se siga un formato
-   predefinido y todo esté más automatizado y en orden, SchemaDB.
-     */
+   predefinido y todo esté más automatizado y en orden, SchemaDB.*/
 
     //seguiremos el siguiente formato
     //insertar trabajador dentro de mi bbdd, para ello tengo que sacar los datos de model-empleado
 
     //hacemos el insertarTrabajador a traves del DAO:
     private EmpleadoDAO empleadoDAO;
-    private CochesDAO cochesDAO;
+    private CochesDAO cochesDAO; //creo el objeto cochesDAO
     private VentaDAO ventaDAO;
 
 
     //lo inicializo dentro del constructor
     public Concesionario() {
         empleadoDAO = new EmpleadoDAO();
-        cochesDAO = new CochesDAO();
+        cochesDAO = new CochesDAO(); //inicializo el objeto cochesDAO
         ventaDAO = new VentaDAO();
     }
 
@@ -60,6 +67,7 @@ public class Concesionario {
             System.out.println("Error en la insercion del empleado");
         }
     }
+
     public void insertarTrabajador(Empleado empleado) {
         //voy a hacer solo el PrepareStatement
         // SchemaDB.nombre
@@ -102,6 +110,7 @@ public class Concesionario {
             System.out.println("Error en la conexion de la base de datos");
         }
     }
+
     public int borrarUsuario(int id) {
         Connection connection = new DBConnection().getConnection();
         try {
@@ -139,6 +148,52 @@ public class Concesionario {
             System.out.println("error en la query");
         }
     }
+
+    //hacemos otro metodo para agregar coche a dao:
+    public void agregarCoche() {
+        //pido los datos:
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce marca");
+        String marca = scanner.next(); //recojo los datos
+        //aqui estoy haciendo la logica y recogiendo los datos para tratarlos en el dao
+        try {
+            if (cochesDAO.getModeloCochesMarca(marca).size() < 2) {
+                System.out.println("Introduce modelo");
+                String modelo = scanner.next();
+                System.out.println("Que caballos tiene");
+                int cv = scanner.nextInt();
+                System.out.println("Que precio tiene");
+                int precio = scanner.nextInt();
+                // si me dicen una marca y ya tengo 8 coches de esa marca, no lo quiero comprar
+                cochesDAO.addCoche(new Coche(marca, modelo, cv, precio)); /*aqui añado el coche. Esto puede provocar un fallo por diversas
+                causas (porque la query esté mal, etc)*/
+                System.out.println("Coche agregado con exito");
+            } else {
+                System.out.println("No interesa el coche al concesionario");
+            }
+        } catch (SQLException e) {
+            System.out.println("La base de datos no esta disponible, quieres guardar el objeto para mas adelante");
+            /*despues de esto me voy al dao, para poder irme al dao, necesito un objeto de tipo dao, lo creo arriba antes de los metodos
+            tipo private CochesDAO cohesDAO;*/
+            // guardar el dato en un fichero -> DAO
+        }
+
+    }
+    public void filtrarPrecio() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Por que precio quieres filtrar");
+        int precio = scanner.nextInt();
+        try {
+            for (Coche coche : cochesDAO.getCochePrecio(precio)) {
+                // mostrar los datos de los coches resultantes en la consola
+                coche.mostrarDatos();
+            }
+        } catch (SQLException e) {
+            System.out.println("No se puede realizar la consulta, quiere hacer otra cosa");
+        }
+
+    }
+
 
 
 

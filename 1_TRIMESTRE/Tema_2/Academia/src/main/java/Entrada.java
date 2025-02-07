@@ -3,12 +3,8 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
 import com.mongodb.client.*;
-import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
-import database.DBScheme;
 import org.bson.Document;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

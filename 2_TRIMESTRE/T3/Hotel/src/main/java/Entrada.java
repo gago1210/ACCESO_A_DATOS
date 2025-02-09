@@ -77,7 +77,7 @@ public class Entrada {
         /*SessionFactory sessionFactory = new HibernateUtil().getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        // t nomeglqtura para un trabajador
+        // t nomenclatura para un trabajador
         // SELECT * FROM EMPLEADOS
         Query<Trabajador> query = session.createQuery("SELECT t FROM Trabajador t",Trabajador.class);
         List<Trabajador> listaTrabajadores = query.list();
@@ -86,6 +86,9 @@ public class Entrada {
         }
         session.getTransaction().commit();
         session.close();*/
+
+        /*TODO ESTO DE AQUI ARRIBA NO ES RELEVANTE YA QUE LO VOY A IMPLEMENTAR MEDIANTE EL DAO, LO DE A PARTIR DE AQUI HACIA ABAJO SI
+        ME VALE PORQUE ES PARTE DEL DAO*/
 
         TrabajadorDAO trabajadorDAO = new TrabajadorDAO();
         // trabajadorDAO.seleccionHabitacionTrabajador(33);

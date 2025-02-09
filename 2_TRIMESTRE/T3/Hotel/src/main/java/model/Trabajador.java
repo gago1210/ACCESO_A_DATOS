@@ -41,7 +41,7 @@ public class Trabajador implements Serializable {
     private String apellido;
     @Embedded
     private Direccion direccion;
-    @Embedded
+    @Embedded //este decorador indica que el atributo tiene que ser buscado en la clase donde está definido (esto es de manera obligatoria)
     @AttributeOverrides({
             @AttributeOverride(name = "localidad",column = @Column(name = "localidad_2")),
             @AttributeOverride(name = "provincia",column = @Column(name = "provincia_2"))

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!--esto me dice como se conecta hibernate con la base de datos y como se traducen los modelos-->
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <!--dentro de este sesion factory le voy indicando las distintas propiedades que quiero:
+        1. como se conecta con hibernate
+        2. -->
+    <session-factory>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!--cuando nosotros hagamos esta traduccion lo va a hacer en un hilo adicional, cuando haga esta traduccion lo haga a nivel de
+        thread, el modo de conexion con el que quiero trabajar-->
+
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--aqui lo que le vamos a indicar es cómo habla  mi hibernate contra mi bbdd, de que manera habla-->
+
+        <property name="connection.url">jdbc:mysql://127.0.0.1/hotel_unir</property>
+        <!--cual es la conexion o con quien se va a conectar, el url seria el de mysql, el jdbc de mysql; indicamos el puerto al que nos
+        queremos conectar y la bbdd a la que nos queremos conectar-->
+
+        <property name="connection.username">root</property>
+        <!--le indico el nombre de usuario, en este caso root-->
+
+        <property name="connection.password"></property>
+        <!-- por ultimo le indico cuál es la contraseña, en este caso, no tiene y se autocompleta-->
+
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <!--cual es el driver que vamos a utilizar, que clase vamos a utilizar para el driver-->
+
+        <!--ahora vamos a hacer el mapeado que es indicar el elemento sobre el que se va a mapear. Cuando alguien me da un objeto, el
+         archivo de configuracion sabe que tiene que pasar por aqui, ve el objeto y se va a la instancia de la clase de ese objeto a
+         analizar cómo esta construida esta clase y va creando la tabla a partir de ello. Asi queda completado el proyecto.-->
+        <mapping class="model.Trabajador"/>
+        <mapping class="model.Direccion"/>
+        <mapping class="model.Habitacion"/>
+        <mapping class="model.Cliente"/>
+    </session-factory>
+</hibernate-configuration>

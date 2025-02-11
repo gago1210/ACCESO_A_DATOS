@@ -33,8 +33,8 @@ la ejecucion de los metodos.*/
             - este entrenador tiene el titulo valido
             - este entrenador es valida para el puesto
             - una vez validado el entrenador, todo ok*/
-        if (entrenador.getCalificacion() < 10) { //si el entrenador que tu me estas dando tiene una cantidad de titulos menos de 10, no vale
-            para el equipo
+        if (entrenador.getCalificacion() < 10) { /*si el entrenador que tu me estas dando tiene una cantidad de titulos menos de 10, no vale
+            para el equipo*/
             System.out.println("No vale para este equipo");
         } else { //si no se cumple lo anterior, se agrega el entrenador
             entrenadorDAO.agregarEntrenador(entrenador);

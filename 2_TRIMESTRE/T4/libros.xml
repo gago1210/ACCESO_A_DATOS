@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- solo puedo tener un nodo root o nodo padre-->
+
+<!-- nombre de la base de datos (es el nombre de la libreria)-->
+<libreria id="1" tipo="tecnologia"> <!--aqui le marco un atributo. Tambien lo que he hecho es que esta libreria cuando yo lea este 
+                                    fichero, hace referencia a una libreria que tiene como identificador 1 y de tipo tecnologia. El 
+                                    atributo que yo marque aqui va a depender del xml,que esté haciendo. Dentro de la BBDD, lo que me va
+                                    interesar es, teniendo en cuenta lo que voy a tener (en este caso hablando de una libreria) las 
+                                    tablas se van a llamar libros/categoria.-->
+
+	<libros categoria="ciencia_ficcion"> <!-- esto es la tabla libros y que se filtra por las categorias que son los atributos-->
+		<libro isbn="123A" idioma="en" paginas="123"> <!--depende de como yo lo quiera filtrar, le pongo un atributo o, un valor.
+                                                        UN ATRIBUTO va dentro de la etiqueta, el valor va fuera de la etiqueta donde 
+                                                        esta el nombre de la tabla y el atributo-->
+			<titulo>
+				Harry Potter
+			</titulo>
+			<autor>
+				J.K. Rowling
+			</autor>
+			<precio moneda="dol">
+				25.90
+			</precio>
+		</libro>
+		<libro isbn="123A" idioma="es">
+		</libro>
+	</libros>
+
+	<libros categoria="sociedad">
+	</libros>
+
+	<revistas categoria="entretenimiento">
+	</revistas>
+    
+	<revistas categoria="pasatiempos">
+		<revista>
+		</revista>
+	</revistas>
+</libreria>
